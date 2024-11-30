@@ -9,25 +9,24 @@ import {
 } from "@angular/forms";
 
 @Component({
-  selector: 'app-custom-input',
-  standalone: true,
-  imports: [
-    FormsModule
-  ],
-  templateUrl: './custom-input.component.html',
-  styleUrl: './custom-input.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => CustomInputComponent)
-    },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: forwardRef(() => CustomInputComponent)
-    }
-  ]
+    selector: 'app-custom-input',
+    imports: [
+        FormsModule
+    ],
+    templateUrl: './custom-input.component.html',
+    styleUrl: './custom-input.component.scss',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => CustomInputComponent)
+        },
+        {
+            provide: NG_VALIDATORS,
+            multi: true,
+            useExisting: forwardRef(() => CustomInputComponent)
+        }
+    ]
 })
 export class CustomInputComponent implements ControlValueAccessor, Validator {
   protected count: string = '';
