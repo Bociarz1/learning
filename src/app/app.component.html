@@ -1,8 +1,16 @@
+@if(false) {
 <div style="width: 100%; height: 100vh">
   <form [formGroup]="form">
-    <input type="number" formControlName="count"/>
-    <button [disabled]="!form.valid" (click)="submit()" [ngClass]="{'ontouched': form.get('count')?.touched}">submit
+    <input type="number" formControlName="count" />
+    <button
+      [disabled]="!form.valid"
+      (click)="submit()"
+      [ngClass]="{ ontouched: form.get('count')?.touched }"
+    >
+      submit
     </button>
   </form>
 </div>
-<!--    <app-custom-input formControlName="count"></app-custom-input>-->
+<!-- <app-custom-input formControlName="count"></app-custom-input> -->
+}
+<app-angular-19></app-angular-19>

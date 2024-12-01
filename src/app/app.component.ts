@@ -1,24 +1,36 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterOutlet} from '@angular/router';
-import {CustomInputComponent} from "./components/custom-input/custom-input.component";
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Angular19Component } from './components/angular-19/angular-19.component';
 
 interface IForm {
-  count: FormControl<number | null>
+  count: FormControl<number | null>;
 }
 
 @Component({
-    selector: 'app-root',
-    imports: [CommonModule, RouterOutlet, CustomInputComponent, ReactiveFormsModule],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    CustomInputComponent,
+    ReactiveFormsModule,
+    Angular19Component,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
-  private destroyRef: DestroyRef = inject(DestroyRef)
-  protected form!: FormGroup<IForm>
+  private destroyRef: DestroyRef = inject(DestroyRef);
+  protected form!: FormGroup<IForm>;
 
   public ngOnInit(): void {
     this.buildForm();
@@ -27,7 +39,7 @@ export class AppComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      count: new FormControl({value: 100, disabled: false})
+      count: new FormControl({ value: 100, disabled: false }),
     });
   }
 
@@ -35,17 +47,16 @@ export class AppComponent implements OnInit {
     this.form.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        console.log(value)
-      })
+        console.log(value);
+      });
   }
 
   protected submit(): void {
-    alert('submit')
+    alert('submit');
   }
 }
 
 // console.log(this.form.get('count')?.errors)
-
 
 //     "address": {
 //       "addressLine1": "Street name 1",
